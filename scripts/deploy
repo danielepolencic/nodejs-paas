@@ -13,7 +13,7 @@ then
   exit 1
 fi
 
-NAME=$ENV_NAME-$APPLICATION
+NAME=$ENV_NAME-$COMPONENT_NAME
 
 curl -f 192.168.0.240:8000/app/$NAME 2>/dev/null
 
