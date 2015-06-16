@@ -1,10 +1,11 @@
 #!/bin/bash
 
-APPLICATION=$1
-ENV_NAME=$2
-SLUG_LOCATION=$3
+ENV_NAME=$1
+SLUG_LOCATION=$2
 
-if [ -z "$APPLICATION" ] || [ -z "$ENV_NAME" ] || [ -z "$SLUG_LOCATION" ]
+. $(dirname $0)/get-component-name
+
+if [ -z "$ENV_NAME" ] || [ -z "$SLUG_LOCATION" ]
 then
   echo "Usage: deploy APPLICATION ENV_NAME SLUG_LOCATION" >&2
   exit 1
