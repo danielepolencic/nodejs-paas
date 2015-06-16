@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NAME=$1
+
 #Copy the slug.tgz to your webserver
-cp slug.tgz /var/www
+cp slug.tgz /usr/share/nginx/html/$NAME
 
