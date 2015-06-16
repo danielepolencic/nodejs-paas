@@ -1,0 +1,27 @@
+#!/bin/bash
+
+APPLICATION=$1
+ENV_NAME=$2
+SLUG_LOCATION=$3
+
+if [ -z "$APPLICATION" ] || [ -z "$ENV_NAME" ] || [ -z "$SLUG_LOCATION" ]
+then
+  echo "Usage: deploy APPLICATION ENV_NAME SLUG_LOCATION" >&2
+  exit 1
+fi
+
+NAME=$ENV_NAME-$APPLICATION
+
+curl -f 192.168.0.240:8000/app/$NAME 2>/dev/null
+
+if [ "$?" != "0" ]
+then
+  curl -X POST -H 'Content-type: application/json' 192.168.0.240:8000/app/ -d "{ \"name\": \"$NAME\" }"
+  curl -X PATCH -H 'Content-type: application/json' 192.168.0.240:8000/app/$NAME -d "{ \"docker_image\": \"flynn/slugrunner\", \"command\": \"start web\", \"urls\": \"$NAME.domain.com\" }" 
+fi
+
+#Now deploy
+
+curl -X PATCH -H 'Content-type: application/json' 192.168.0.240:8000/app/$NAME -d "{ \"environment\": { \"SLUG_URL\": \"$SLUG_LOCATION\" } }"
+
+

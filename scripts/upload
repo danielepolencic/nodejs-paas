@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#Copy the slug.tgz to your webserver
+cp slug.tgz /var/www
+
