@@ -1,13 +1,15 @@
 #!/bin/bash
 
 ENV_NAME=$1
-SLUG_LOCATION=$2
+VERSION=$2
 
 . $(dirname $0)/get-component-name
 
+SLUG_LOCATION=http://10.0.2.15/$COMPONENT_NAME-$VERSION
+
 if [ -z "$ENV_NAME" ] || [ -z "$SLUG_LOCATION" ]
 then
-  echo "Usage: deploy APPLICATION ENV_NAME SLUG_LOCATION" >&2
+  echo "Usage: deploy ENV_NAME VERSION" >&2
   exit 1
 fi
 

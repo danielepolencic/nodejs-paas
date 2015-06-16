@@ -1,0 +1,4 @@
+#!/bin/bash
+
+COMPONENT_NAME=$(git config remote.origin.url | awk -F'/' '{print $NF}' | awk -F '.git' '{print $1}')
+echo "$0: using COMPONENT_NAME=$COMPONENT_NAME, set COMPONENT_NAME to change" >&2
