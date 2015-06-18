@@ -8,6 +8,10 @@ app.get('/', function(request, response) {
   response.send('Hello World!');
 });
 
+app.get('/port', function (req, res) {
+  res.send('PORT=' + process.env.PORT);
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
